@@ -12,8 +12,8 @@ def search(text, pattern):
         if pattern[idxPattern] == text[idxText]:
             if idxPattern == 0: 
                 idxFound.append(idxText)
-                idxText = idxText+len(pattern)
-                idxPattern = len(pattern)-1
+                idxText = idxText+2*len(pattern)-1 #geser text ke posisi string setelah matched
+                idxPattern = len(pattern)-1 #reset idxPattern
             else:
                 idxText-=1
                 idxPattern-=1
@@ -42,7 +42,7 @@ Sementara itu jumlah Pasien Dalam Pengawasan (PDP) mencapai 2.27 8 orang. Tercat
 masih menjalani proses pengawasan dan 934 orang lainnya telah selesai menjalani proses
 pengawasan. terkonfirmasi positif
 '''
-print(search(text, "terkonfirmasi positif"))
+print(search("AAAA", "AAA"))
 print(text[333:333+len("terkonfirmasi positif")])
 # print(text[930:930+len("terkonfirmasi positif")])
 # print(text[951:951+len("terkonfirmasi positif")])

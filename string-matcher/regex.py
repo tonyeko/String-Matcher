@@ -21,7 +21,7 @@ Sementara itu jumlah Pasien Dalam Pengawasan (PDP) mencapai 2.27 8 orang. Tercat
 masih menjalani proses pengawasan dan 934 orang lainnya telah selesai menjalani proses
 pengawasan. terkonfirmasi positif
 '''
-print(search(text, "terkonfirmasi positif"))
+print(search("AAAA", "AAA"))
 print(text[333:354])
 print(text[930:930+len("terkonfirmasi positif")])
 print(text[951:951+len("terkonfirmasi positif")])
