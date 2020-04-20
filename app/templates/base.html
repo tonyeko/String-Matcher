@@ -5,13 +5,14 @@
       {% else %}
       <title>String Matcher</title>
       {% endif %}
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
     </head>
     <body>
-      <div>
+      <!-- <div>
           String Matcher:
           <a href="{{url_for('index')}}">Home</a>
       </div>
-      <hr>
+      <hr> -->
       {% with messages = get_flashed_messages() %}
       {% if messages %}
       <ul>
@@ -22,5 +23,8 @@
       {% endif %}
       {% endwith %}
       {% block content %}{% endblock %}
+      <div class="footer">
+        <p><a href="{{url_for('about')}}">2020 © Tony Eko Yuwono - 13518030</a></p>
+      </div>
   </body>
 </html>

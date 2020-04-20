@@ -1,9 +1,3 @@
-from re import finditer
-
-def search(text, pattern):
-    return [m.start() for m in finditer(pattern, text)]
-
-text = '''
 421 Orang di Jabar Terkonfirmasi Positif COVID-19
 Yudha Maulana - detikNews
 Sabtu, 11 Apr 2020 20:07 WIB
@@ -16,13 +10,7 @@ Dari 421 kasus tersebut, 40 orang meninggal dunia dengan keterangan terpapar COV
 Sedangkan, angka kesembuhan di Jabar masih tetap berada di angka 19 orang.
 Per hari jumlah Orang Dalam Pemantauan (ODP) di Jabar mencapai 28.775 orang. Sebanyak 15.363
 di antaranya masih menjalani proses pemantauan dan 13.412 orang lainnya telah selesai menjalani
-proses pemantauan.  terkonfirmasi positifterkonfirmasi positif
+proses pemantauan.  terkonfirmasi positIfTerkonfirmasi positif
 Sementara itu jumlah Pasien Dalam Pengawasan (PDP) mencapai 2.27 8 orang. Tercatat 1.344 orang
 masih menjalani proses pengawasan dan 934 orang lainnya telah selesai menjalani proses
 pengawasan. terkonfirmasi positif
-'''
-print(search("AAAA", "AAA"))
-print(text[333:354])
-print(text[930:930+len("terkonfirmasi positif")])
-print(text[951:951+len("terkonfirmasi positif")])
-print(text[1167:1167+len("terkonfirmasi positif")])

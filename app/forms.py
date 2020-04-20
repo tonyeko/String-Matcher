@@ -3,6 +3,6 @@ from wtforms import StringField, MultipleFileField, SubmitField
 from wtforms.validators import DataRequired
 
 class LoginForm(FlaskForm):
-    folder = MultipleFileField('Folder', validators=[DataRequired()])
+    folder = MultipleFileField('File(s)', validators=[DataRequired()])
     keyword = StringField('Keyword', validators=[DataRequired()])
     submit = SubmitField('Submit')
