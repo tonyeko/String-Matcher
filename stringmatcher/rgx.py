@@ -5,17 +5,28 @@ def search(text, pattern):
     regex = re.compile(pattern, re.IGNORECASE)
     return [m.start() for m in regex.finditer(text)]
 
-def searchDigit(text):
-    # return re.findall(r'\d+[\.,]?\d+( ?%)?', text)
-    return [x.group() for x in re.finditer( r'\d+[\.,]?\d+( ?%)?', text)]
+def searchDigit(sentence):
+  number = searchDigit2(sentence)
+  if number[0] == '': number = searchDigit1(sentence)
+  return number
+
+def searchDigit1(text):
+    '''Search number with digit format'''
+    return [x.group() for x in re.finditer( r' \d+[\.,]?\d+( ?%)?(?:puluh|ratus|ribu|juta)? (?:\d+)?|^\d+[\.,]?\d+( ?%)? (?:puluh|ratus|ribu|juta)? (?:\d+)?', text)]
+
+def searchDigit2(sentence):
+  '''Search number with alphabetic format'''
+  all = re.findall(r"((?:^(?:\d+)(?:,\d+)? ?|(?:lebih|kurang (?:dari )?)?(?:[sS]atu |[dD]ua |[tT]iga |[eE]mpat |[lL]ima |[eE]nam |[tT]ujuh |[dD]elapan |[sS]embilan ))?(?: ?%|puluh|ratus|ribu|juta)?)",sentence)
+  return all
+
 
 def searchDate(sentence):
-    result = searchDate4(sentence)
+    result = searchDate5(sentence)
+    if not result: result = searchDate4(sentence)
     if not result: result = searchDate3(sentence, "/")
     if not result: result = searchDate3(sentence, "-")
     if not result: result = searchDate2(sentence, "/")
     if not result: result = searchDate2(sentence, "-")
-    # TAMBAH SEARCHDATE5
     return result
 
 def searchDate2(sentence, separator):
@@ -47,16 +58,20 @@ def searchDate3(sentence, separator):
     return result
 
 def searchDate4(sentence):
-    '''Search date with pattern: Day Date Month Year'''
+    '''Search date with pattern: Day Date Month Year Time TimeRegion'''
     result = []
-    pattern = "((?:[sS]enin)?|(?:[sS]elasa)?||(?:[rR]abu)?||(?:[kK]amis)?||(?:[jJ]umat)?||(?:[sS]abtu)?||(?:[mM]inggu)?)[,-]? ?((0?[1-9])|([12][0-9])|3[01])[ -/](?:[jJ]an(?:uari)?|[fF]eb(?:ruari)?|[mM]ar(?:et)?|[aA]pr(?:il)?|[mM]ei|[jJ]uni?|[jJ]uli?|[aA]gustus|[sS]ept?(?:ember)?|[oO]kt(?:ober)?|[nN]ov(?:ember)?|[dD]es(?:ember)?)[ -/]\d{4}[ -/]?(?:[pP]ukul)?(?:\d{2}:\d{2})? ?(?:([wW][iI])([tT][aA]?|[bB]))?"
+    pattern = "(?:Kemarin (?:lusa)? ?,?)?((?:[sS]enin)?|(?:[sS]elasa)?|(?:[rR]abu)?|(?:[kK]amis)?|(?:[jJ]umat)?|(?:[sS]abtu)?|(?:[mM]inggu)?)[,-]? ?((0?[1-9])|([12][0-9])|3[01])[ -/](?:[jJ]an(?:uari)?|[fF]eb(?:ruari)?|[mM]ar(?:et)?|[aA]pr(?:il)?|[mM]ei|[jJ]uni?|[jJ]uli?|[aA]gustus|[sS]ept?(?:ember)?|[oO]kt(?:ober)?|[nN]ov(?:ember)?|[dD]es(?:ember)?)[ -/]\d{4}[ -/]? ?(?:[pP]ukul)?(?:\d{2}:\d{2})? ?(?:([wW][iI])([tT][aA]?|[bB]))?(?:(?:yang )?lalu)?"
     regex = re.compile(pattern)
     if regex.search(sentence): result.append(regex.search(sentence).group())
     return result
 
 def searchDate5(sentence):
-    '''Search date with pattern: kemarin, sehari, sebelumnya'''
-    
+    '''Search date with pattern: Day (Date/Month/Year or Date-Month-Year)  Time TimeRegion'''
+    result = []
+    pattern = "(?:Kemarin (?:lusa)? ?,?)?((?:[sS]enin)?|(?:[sS]elasa)?|(?:[rR]abu)?|(?:[kK]amis)?|(?:[jJ]umat)?|(?:[sS]abtu)?|(?:[mM]inggu)?)[,-]? ?\(?((0?[1-9])|([12][0-9])|3[01])[ -/](0?[1-9]|1[12])[ -/]\d{4}[ -/]? ?(?:[pP]ukul)? ?(?:\d{2}[.:]?\d{2})? ?(?:([wW][iI])([tT][aA]?|[bB]))?(?:(?:yang )?lalu)?"
+    regex = re.compile(pattern)
+    if regex.search(sentence): result.append(regex.search(sentence).group())
+    return result
 
 # text = '''
 # 421 Orang di Jabar Terkonfirmasi Positif COVID-19

@@ -9,7 +9,8 @@ TEST_FOLDER = "test"
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    form = InputForm()    
+    form = InputForm()
+    err = False
     if form.validate_on_submit():
         result = algo.search(form.folder.data, form.keyword.data, form.algo.data, TEST_FOLDER)
         return render_template('index.html', title='String Matcher - 13518030', form=form, result=result, keyword=form.keyword.data)

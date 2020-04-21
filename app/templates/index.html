@@ -1,68 +1,54 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="container">
+{% block page_content %}
     <form action="{{ url_for('index') }}" method="post">
         {{ form.hidden_tag() }}
-        <table>
-            <tr>
-                <td>{{ form.folder.label }}</td>
-                <td>{{ form.folder(size=32) }}</td>
-                {% for error in form.folder.errors %}
-                <td style="color: red;">[{{ error }}]</td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <td>{{ form.keyword.label }}</td>
-                <td>{{ form.keyword(size=32) }}</td>
-                {% for error in form.keyword.errors %}
-                <td style="color: red;">[{{ error }}]</td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <td>{{ form.algo.label }}</td>
+        <div class="form-group position-relative">
+            {{ form.keyword.label }}
+            {{ form.keyword(class_="form-control") }}
+        </div>
+        <div class="form-group position-relative">
+            <div class="row">
+                <div class="col-md-2">{{ form.algo.label }}</div>
                 {% for subfield in form.algo %}
-                <td>
-                    {{ subfield }}
-                    {{ subfield.label }}
-                </td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <td>{{ form.submit() }}</td>
-            </tr>
-        </table>
+                    <div class="col-md-3">
+                        {{ subfield }}
+                        {{ subfield.label }}
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+        <div class="form-group position-relative">
+            {{ form.folder.label }}
+            {{ form.folder(class_="form-control-file") }}
+        </div>
+        {{ form.submit(class_="btn btn-default") }}
     </form>
+    <br>
     {% if result %}
-    <div>
-        <p class="font-weight-bold">Keyword: {{ keyword }}</p>
-        <p>Hasil ekstraksi informasi:</p>
+        <p><b>Keyword:</b> {{ keyword }}</p>
+        <p><b>Hasil ekstraksi informasi:</b></p>
         {% for text in result %}
             {% for data in text[1] %}
             <p>
-                Jumlah: {% if data[1][0] %} {{ data[1][0] }} {% else %} - {% endif %};
-                Waktu: {% if data[0][0] %}  {{ data[0][0] }} {% else %} - {% endif %}<br>
+                <b>Jumlah:</b> {% if data[1][0] %} {{ data[1][0] }} {% else %} - {% endif %};
+                <b>Waktu:</b> {% if data[0][0] %}  {{ data[0][0] }} {% else %} - {% endif %}<br>
                 {{ data[2] }}<br>
-                File: {{ text[0] }}
+                <b>File:</b> {{ text[0] }}
             </p>
             {% endfor %}    
-        
         {% endfor %}
-    </div>
-    <div class="navbar navbar-sticky-bottom">
-        <div class="container text-center">
-            <small><a href={{ url_for('about') }}>Copyright &copy; Tony Eko Yuwono - 13518030</a></small>
+        <div class="navbar navbar-sticky-bottom">
+            <div class="container text-center">
+                <small><a href={{ url_for('about') }}>Copyright &copy; Tony Eko Yuwono - 13518030</a></small>
+            </div>
         </div>
-    </footer>
-    </div>
     {% else %}
-    <div class="navbar navbar-fixed-bottom">
-        <div class="container text-center">
-            <small><a href={{ url_for('about') }}>Copyright &copy; Tony Eko Yuwono - 13518030</a></small>
+        <div class="navbar navbar-fixed-bottom">
+            <div class="container text-center">
+                <small><a href={{ url_for('about') }}>Copyright &copy; Tony Eko Yuwono - 13518030</a></small>
+            </div>
         </div>
-    </footer>
-    </div>
     {% endif %}
 
-    
 {% endblock %}

@@ -13,7 +13,7 @@ def search(listFile, keyword, method, currentFolder):
             for sentence in text:
                 idxFound = bm.search(sentence, keyword);
                 if idxFound: searchResult.append((rgx.searchDate(sentence), rgx.searchDigit(sentence), sentence))
-        else:
+        elif method == "regex":
             for sentence in text:
                 idxFound = rgx.search(sentence, keyword);
                 if idxFound: searchResult.append((rgx.searchDate(sentence), rgx.searchDigit(sentence), sentence))

@@ -6,4 +6,10 @@
 </h1>
 {% endblock %}
 
-{% block content %}{% endblock %}
+<body>
+    {% block content %}
+    <div class="container">
+        {% block page_content %}{% endblock %}
+    </div>
+    {% endblock %}
+</body>
