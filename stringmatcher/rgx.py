@@ -10,7 +10,11 @@ def searchDigit(text):
 
 def searchDate(sentence):
     result = searchDate2(sentence, "/")
-    result += searchDate2(sentence, "-")
+    if not result: result = searchDate2(sentence, "-")
+    if not result: result = searchDate3(sentence, "/")
+    if not result: result = searchDate3(sentence, "-")
+    if not result: result = searchDate4(sentence)
+    # TAMBAH SEARCHDATE5
     return result
 
 def searchDate2(sentence, separator):
@@ -46,7 +50,7 @@ def searchDate4(sentence):
     result = []
     pattern = "((?:[sS]enin)?|(?:[sS]elasa)?||(?:[rR]abu)?||(?:[kK]amis)?||(?:[jJ]umat)?||(?:[sS]abtu)?||(?:[mM]inggu)?)[,-]? ?((0?[1-9])|([12][0-9])|3[01])[ -/](?:[jJ]an(?:uari)?|[fF]eb(?:ruari)?|[mM]ar(?:et)?|[aA]pr(?:il)?|[mM]ei|[jJ]uni?|[jJ]uli?|[aA]gustus|[sS]ept?(?:ember)?|[oO]kt(?:ober)?|[nN]ov(?:ember)?|[dD]es(?:ember)?)[ -/]\d{4}[ -/](?:[pP]ukul)?\d{2}:\d{2} ?([wW][iI])([tT][aA]?|[bB])"
     regex = re.compile(pattern)
-    result.append(regex.search(sentence).group())
+    if regex.search(sentence): result.append(regex.search(sentence).group())
     return result
 
 def searchDate5(sentence):
@@ -72,4 +76,4 @@ def searchDate5(sentence):
 # pengawasan. terkonfirmasi positif
 # '''
 
-# print(searchDigit(text))
+# print(searchDate4(text))

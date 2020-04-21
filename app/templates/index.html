@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>String Matcher - 13518030</h1>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/browse.js') }}"></script>
-    <form action="" method="post" name="login">
+<div class="container">
+    <form action="{{ url_for('index') }}" method="post">
         {{ form.hidden_tag() }}
         <table>
             <tr>
@@ -21,8 +20,42 @@
                 {% endfor %}
             </tr>
             <tr>
+                <td>{{ form.algo.label }}</td>
+                {% for subfield in form.algo %}
+                <td>
+                    {{ subfield }}
+                    {{ subfield.label }}
+                </td>
+                {% endfor %}
+            </tr>
+            <tr>
                 <td>{{ form.submit() }}</td>
             </tr>
         </table>
     </form>
+    <div class="navbar navbar-fixed-bottom">
+        <div class="container text-center">
+            <small><a href={{ url_for('about') }}>Copyright &copy; Tony Eko Yuwono - 13518030</a></small>
+        </div>
+    </footer>
+</div>
+
+{% if result %}
+    <div>
+        <p class="font-weight-bold">Keyword: {{ keyword }}</p>
+        <p>Hasil ekstraksi informasi:</p>
+        {% for text in result %}
+            {% for data in text[1] %}
+            <p>
+                Jumlah: {% if data[1][0] %} {{ data[1][0] }} {% else %} - {% endif %};
+                Waktu: {% if data[0][0] %}  {{ data[0][0] }} {% else %} - {% endif %}<br>
+                {{ data[2] }}<br>
+                File: {{ text[0] }}
+            </p>
+            {% endfor %}    
+        
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% endblock %}
