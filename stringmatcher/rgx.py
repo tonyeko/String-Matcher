@@ -12,11 +12,11 @@ def searchDigit(sentence):
 
 def searchDigit1(text):
     '''Search number with digit format'''
-    return [x.group() for x in re.finditer( r' \d+[\.,]?\d+( ?%)?(?:puluh|ratus|ribu|juta)? (?:\d+)?|^\d+[\.,]?\d+( ?%)? (?:puluh|ratus|ribu|juta)? (?:\d+)?', text)]
+    return [x.group() for x in re.finditer( r'[ "]\d+[\.,]?\d+( ?%)? ?(?:puluh|ratus|ribu|juta)? (?:\d+)?|^\d+[\.,]?\d+( ?%)? ?(?:puluh|ratus|ribu|juta)? (?:\d+)?', text)]
 
 def searchDigit2(sentence):
   '''Search number with alphabetic format'''
-  all = re.findall(r"((?:^(?:\d+)(?:,\d+)? ?|(?:lebih|kurang (?:dari )?)?(?:[sS]atu |[dD]ua |[tT]iga |[eE]mpat |[lL]ima |[eE]nam |[tT]ujuh |[dD]elapan |[sS]embilan ))?(?: ?%|puluh|ratus|ribu|juta)?)",sentence)
+  all = re.findall(r"((?:^(?:\d+)(?:,\d+)? ?|(?:lebih|kurang (?:dari )?)?(?:[sS]atu |[dD]ua |[tT]iga |[eE]mpat |[lL]ima |[eE]nam |[tT]ujuh |[dD]elapan |[sS]embilan ))?(?: ?%|persen|puluh|ratus|ribu|juta)?)",sentence)
   return all
 
 
