@@ -6,32 +6,19 @@ def search(text, pattern):
     return [m.start() for m in regex.finditer(text)]
 
 def searchDigit(text):
-    return re.findall(r'\d+', text)
+    # return re.findall(r'\d+[\.,]?\d+( ?%)?', text)
+    return [x.group() for x in re.finditer( r'\d+[\.,]?\d+( ?%)?', text)]
 
 def searchDate(sentence):
-    result = searchDate2(sentence, "/")
-    if not result: result = searchDate2(sentence, "-")
+    result = searchDate4(sentence)
     if not result: result = searchDate3(sentence, "/")
     if not result: result = searchDate3(sentence, "-")
-    if not result: result = searchDate4(sentence)
+    if not result: result = searchDate2(sentence, "/")
+    if not result: result = searchDate2(sentence, "-")
     # TAMBAH SEARCHDATE5
     return result
 
 def searchDate2(sentence, separator):
-    '''Search date with pattern: DD/MM/YYYY or DD-MM-YYYY'''
-    result = []
-    pattern = '\d{1,2}'+separator+'\d{1,2}'+separator+'\d{4}'
-    dateformat = "%d"+separator+"%m"+separator+"%Y"
-    regex = re.compile(pattern)
-    for match in regex.finditer(sentence):
-        try:
-            datetime.datetime.strptime(match.group(0), dateformat)
-            result.append(match.group(0))
-        except ValueError:
-            pass
-    return result
-
-def searchDate3(sentence, separator):
     '''Search date with pattern: DD/MM/YY or DD-MM-YY'''
     result = []
     pattern = '\d{1,2}'+separator+'\d{1,2}'+separator+'\d{2}'
@@ -45,17 +32,31 @@ def searchDate3(sentence, separator):
             pass
     return result
 
+def searchDate3(sentence, separator):
+    '''Search date with pattern: DD/MM/YYYY or DD-MM-YYYY'''
+    result = []
+    pattern = '\d{1,2}'+separator+'\d{1,2}'+separator+'\d{4}'
+    dateformat = "%d"+separator+"%m"+separator+"%Y"
+    regex = re.compile(pattern)
+    for match in regex.finditer(sentence):
+        try:
+            datetime.datetime.strptime(match.group(0), dateformat)
+            result.append(match.group(0))
+        except ValueError:
+            pass
+    return result
+
 def searchDate4(sentence):
     '''Search date with pattern: Day Date Month Year'''
     result = []
-    pattern = "((?:[sS]enin)?|(?:[sS]elasa)?||(?:[rR]abu)?||(?:[kK]amis)?||(?:[jJ]umat)?||(?:[sS]abtu)?||(?:[mM]inggu)?)[,-]? ?((0?[1-9])|([12][0-9])|3[01])[ -/](?:[jJ]an(?:uari)?|[fF]eb(?:ruari)?|[mM]ar(?:et)?|[aA]pr(?:il)?|[mM]ei|[jJ]uni?|[jJ]uli?|[aA]gustus|[sS]ept?(?:ember)?|[oO]kt(?:ober)?|[nN]ov(?:ember)?|[dD]es(?:ember)?)[ -/]\d{4}[ -/](?:[pP]ukul)?\d{2}:\d{2} ?([wW][iI])([tT][aA]?|[bB])"
+    pattern = "((?:[sS]enin)?|(?:[sS]elasa)?||(?:[rR]abu)?||(?:[kK]amis)?||(?:[jJ]umat)?||(?:[sS]abtu)?||(?:[mM]inggu)?)[,-]? ?((0?[1-9])|([12][0-9])|3[01])[ -/](?:[jJ]an(?:uari)?|[fF]eb(?:ruari)?|[mM]ar(?:et)?|[aA]pr(?:il)?|[mM]ei|[jJ]uni?|[jJ]uli?|[aA]gustus|[sS]ept?(?:ember)?|[oO]kt(?:ober)?|[nN]ov(?:ember)?|[dD]es(?:ember)?)[ -/]\d{4}[ -/]?(?:[pP]ukul)?(?:\d{2}:\d{2})? ?(?:([wW][iI])([tT][aA]?|[bB]))?"
     regex = re.compile(pattern)
     if regex.search(sentence): result.append(regex.search(sentence).group())
     return result
 
 def searchDate5(sentence):
     '''Search date with pattern: kemarin, sehari, sebelumnya'''
-
+    
 
 # text = '''
 # 421 Orang di Jabar Terkonfirmasi Positif COVID-19

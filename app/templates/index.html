@@ -33,14 +33,7 @@
             </tr>
         </table>
     </form>
-    <div class="navbar navbar-fixed-bottom">
-        <div class="container text-center">
-            <small><a href={{ url_for('about') }}>Copyright &copy; Tony Eko Yuwono - 13518030</a></small>
-        </div>
-    </footer>
-</div>
-
-{% if result %}
+    {% if result %}
     <div>
         <p class="font-weight-bold">Keyword: {{ keyword }}</p>
         <p>Hasil ekstraksi informasi:</p>
@@ -56,6 +49,20 @@
         
         {% endfor %}
     </div>
-{% endif %}
+    <div class="navbar navbar-sticky-bottom">
+        <div class="container text-center">
+            <small><a href={{ url_for('about') }}>Copyright &copy; Tony Eko Yuwono - 13518030</a></small>
+        </div>
+    </footer>
+    </div>
+    {% else %}
+    <div class="navbar navbar-fixed-bottom">
+        <div class="container text-center">
+            <small><a href={{ url_for('about') }}>Copyright &copy; Tony Eko Yuwono - 13518030</a></small>
+        </div>
+    </footer>
+    </div>
+    {% endif %}
 
+    
 {% endblock %}

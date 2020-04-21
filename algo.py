@@ -8,16 +8,15 @@ def search(listFile, keyword, method, currentFolder):
         if method == "kmp":
             for sentence in text:
                 idxFound = kmp.search(sentence, keyword);
-                if idxFound: 
-                    searchResult.append((rgx.searchDate(sentence), rgx.searchDigit(sentence), sentence))
+                if idxFound: searchResult.append((rgx.searchDate(sentence), rgx.searchDigit(sentence), sentence))
         elif method == "bm":
             for sentence in text:
                 idxFound = bm.search(sentence, keyword);
-                if idxFound: searchResult.append(sentence)
+                if idxFound: searchResult.append((rgx.searchDate(sentence), rgx.searchDigit(sentence), sentence))
         else:
             for sentence in text:
                 idxFound = rgx.search(sentence, keyword);
-                if idxFound: searchResult.append(sentence)
+                if idxFound: searchResult.append((rgx.searchDate(sentence), rgx.searchDigit(sentence), sentence))
         fileResult.append((file, searchResult))
     print(fileResult)
     return fileResult
