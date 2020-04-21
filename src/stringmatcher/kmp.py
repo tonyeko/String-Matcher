@@ -1,4 +1,5 @@
 def computeLPS(pattern):
+    '''Compute LPS (longest proper prefix which is also suffix) for preprocessing in KMP Algorithm'''
     lps = [0 for i in range(len(pattern))]
     lastLps = 0 #variabel untuk mencatat lps 
     indexNow = 1 #pencarian lps dari index-1 (lps[0] pasti 0)

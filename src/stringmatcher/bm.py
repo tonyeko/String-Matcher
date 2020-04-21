@@ -1,4 +1,5 @@
 def buildLast(pattern):
+    '''The preprocessing function for Boyer-Moore Algorithm'''
     last = [-1 for i in range(128)]
     for i in range(len(pattern)):
         last[ord(pattern[i].lower())] = i

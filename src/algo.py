@@ -18,8 +18,4 @@ def search(listFile, keyword, method, currentFolder):
                 idxFound = rgx.search(sentence, keyword);
                 if idxFound: searchResult.append((rgx.searchDate(sentence), rgx.searchDigit(sentence), sentence))
         fileResult.append((file, searchResult))
-    print(fileResult)
     return fileResult
-    
-
-# search(['tes.txt'], "terkonfirmasi positif", "kmp", "test")

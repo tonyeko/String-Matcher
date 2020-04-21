@@ -4,7 +4,7 @@ from app import app
 from app.forms import InputForm
 import algo
 
-TEST_FOLDER = "test"
+TEST_FOLDER = "../test"
 
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'])
