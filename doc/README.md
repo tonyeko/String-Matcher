@@ -4,84 +4,97 @@ Sebuah website yang dibuat untuk memenuhi tugas Strategi Algoritma dengan topik 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 ```
-Give examples
+python
+python virtual environment(opsional)
+flask
+flask-wtf
+flask-bootstrap
+nltk
+nltk-punkt
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+1. Python
 
 ```
-Give the example
+Linux
+$ sudo apt-get update
+$ sudo apt-get install python3
 ```
 
-And repeat
-
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+Windows
+Go to https://www.python.org/downloads/
+Install the latest version of python
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
+2. Setting venv (Optional)
 
 ```
-Give an example
+Linux
+$ virtualenv venv
+$ . venv/bin/activate
+(venv) $ ...
 ```
 
-## Deployment
+```
+Windows
+$ virtualenv venv
+$ venv\Scripts\activate
+(venv) $ ...
+```
 
-Add additional notes about how to deploy this on a live system
+3. Flask
+
+```
+$ pip install flask
+```
+
+4. Flask-WTF
+
+```
+$ pip install flask-wtf
+```
+
+5. Flask-Bootstrap
+
+```
+$ pip install flask-bootstrap
+```
+
+6. NLTK
+
+```
+$ pip install nltk
+```
+
+7. NLTK-punkt
+
+```
+run python
+$ python
+>>> import nltk
+>>> nltk.download('punkt')
+```
+
+## How To Run
+
+1. Open terminal/windows cmd
+2. Activate virtual environment (optional)
+3. Go to src folder
+4. run command ```python run.py```
+5. Open web browser and go to ```127.0.0.1:5000```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [Python](https://www.python.org/) - Programming Language
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/) - Web Framework
+* [NLTK](https://www.nltk.org/) - Sentence Tokenizer
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* **Tony Eko Yuwono** - *13518030*
